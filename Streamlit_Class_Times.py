@@ -9,18 +9,22 @@ def calculate_breaks(start_time, lunch_time, finish_time, break_length, lunch_du
   lunch_dt = datetime.datetime.combine(datetime.date.today(), lunch_time)
   finish_dt = datetime.datetime.combine(datetime.date.today(), finish_time)
 
+  # Calculate morning session time
   morning_total_time = lunch_dt - start_dt
   morning_session_time = (morning_total_time / 2) - datetime.timedelta(minutes=break_length / 2)
 
+  # Calculate afternoon session time
   afternoon_start = lunch_dt + datetime.timedelta(minutes=lunch_duration)
   afternoon_total_time = finish_dt - afternoon_start
   afternoon_session_time = (afternoon_total_time / 2) - datetime.timedelta(minutes=break_length / 2)
 
+  # Calculate break start times
   first_break = start_dt + morning_session_time
   second_break = lunch_dt - morning_session_time
   third_break = afternoon_start + afternoon_session_time
   fourth_break = finish_dt - afternoon_session_time
 
+  # Return calculated values
   return (
     first_break.strftime("%H:%M"),
     second_break.strftime("%H:%M"),
@@ -32,7 +36,7 @@ def calculate_breaks(start_time, lunch_time, finish_time, break_length, lunch_du
   )
 
 # Streamlit app
-st.title('Training Day Timings')
+st.title('Training Day Schedule')
 
 # Inputs
 break_length = st.number_input('Break Length (in minutes)', value=20)
@@ -42,6 +46,7 @@ start_time = st.time_input('Enter start time', datetime.time(9, 30))
 lunch_time = st.time_input('Enter lunch time', datetime.time(12, 30))
 finish_time = st.time_input('Enter finish time', datetime.time(16, 30))
 
+# Calculate breaks and display schedule when user clicks button
 if st.button('Calculate'):
 
   breaks = calculate_breaks(start_time, lunch_time, finish_time,
