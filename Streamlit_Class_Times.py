@@ -32,7 +32,7 @@ def calculate_breaks(start_time, lunch_time, finish_time, break_length, lunch_du
   )
 
 # Streamlit app
-st.title('Training Day Schedule')
+st.title('Training Day Timings')
 
 # Inputs
 break_length = st.number_input('Break Length (in minutes)', value=20)
