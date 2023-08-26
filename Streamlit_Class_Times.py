@@ -44,7 +44,7 @@ finish_time = st.time_input('Enter finish time', datetime.time(16, 30))
 
 with st.sidebar:
     st.subheader('About')
-    st.markdown('This is a simple app to calculate the breaks in a training course')
+    st.markdown('A simple app to calculate the break times in a training course')
 
 st.sidebar.image('https://i.postimg.cc/sXGJVRwL/2023-08-26-09-38-11.png', width=150)
 
